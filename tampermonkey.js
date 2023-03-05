@@ -15,26 +15,28 @@ search.placeholder = "Search for an item...";
 search.style = "font-size: .9em; padding-left: .5em; padding-bottom: .5em; padding-top: .5em; width:100%; border: none";
 
 search.onfocus = searchFocused(search);
-function searchFocused(element){
+function searchFocused(element) {
     element.style = 'font-size: .9em; outline: none; padding-left: .5em; padding-bottom: .5em; padding-top: .5em; width:100%; border: none';
 }
 
 filterOptions.insertBefore(search, filterOptions.children[2]);
 
-let loading = false;
+let loading = document.createElement("Div");
+loading.innerHTML = 'Loading...';
 
 async function handleSearchChange(e) {
     let value = e.target.value;
 
     if (e.key === 'Enter' || e.keyCode === 13) {
-        loading = true;
+        filterOptions.insertBefore(loading, filterOptions.children[3]);
+        loading.style = 'padding-left: .5em; display: block;';
         let auctionsArr = await getScrapAuctions(value);
 
         auctionList.innerHTML = '';
         auctionsArr.forEach((item) => {
            auctionList.appendChild(item);
         });
-        loading = false;
+        loading.style = 'display: none;';
     }
 }
 
