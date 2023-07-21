@@ -10,6 +10,10 @@
 const filterOptions = document.querySelectorAll('.panel-info')[1];
 const auctionList = document.querySelector('#raffles-list');
 
+var totalAuctions = filterOptions.children[1].children[0].innerHTML.match(/\d/g);
+totalAuctions = totalAuctions.join("");
+
+
 let search = document.createElement("Input");
 search.placeholder = "Search for an item...";
 search.style = "font-size: .9em; padding-left: .5em; padding-bottom: .5em; padding-top: .5em; width:100%; border: none";
@@ -50,6 +54,7 @@ async function getScrapAuctions(searchValue) {
     // Pulls all action boxes
     for (let i = 1; i < 99; i++) {
         if (finished === false) {
+            loading.innerHTML = "Loading " + i + " pages out of " + Math.trunc(totalAuctions / 28);
             const response = await fetch(`${url}/${i}`);
             const data = await response.text();
 
@@ -59,7 +64,7 @@ async function getScrapAuctions(searchValue) {
             // Pull all auction boxes
             let auctions = doc.querySelectorAll('.panel-auction');
 
-            if (auctions.length < 30) {
+            if (auctions.length < 32) {
                 finished = true;
             }
 
@@ -68,16 +73,14 @@ async function getScrapAuctions(searchValue) {
                 if (index === 0 || index === 1) {
                     return;
                 } else {
-                    const regexFilter = item.children[2].children[0].innerHTML.match('<\s*span[^>]*>(.*?)<\s*\/\s*span>');
+                    const regexFilter = item.innerHTML;
 
                     let includesSearch = false;
 
                     if (regexFilter) {
-                        regexFilter.forEach((item, index) => {
-                            if (item.toLowerCase().includes(searchValue.toLowerCase())) {
-                                includesSearch = true;
-                            }
-                        });
+                        if (regexFilter.toLowerCase().includes(searchValue.toLowerCase())) {
+                            includesSearch = true;
+                        }
                     }
 
                     if (includesSearch === true) {
