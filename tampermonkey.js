@@ -33,6 +33,10 @@ async function handleSearchChange(e) {
     let lowerValue = value.toLowerCase();
     let stringArr = lowerValue.split("&&");
 
+    stringArr.forEach((item, index) => {
+        stringArr[index] = item.trim();
+    });
+
     if (e.key === 'Enter' || e.keyCode === 13) {
         filterOptions.insertBefore(loading, filterOptions.children[3]);
         loading.style = 'padding-left: .5em; display: block;';
@@ -66,7 +70,7 @@ async function getScrapAuctions(searchValue) {
             // Pull all auction boxes
             let auctions = doc.querySelectorAll('.panel-auction');
 
-            if (auctions.length < 32) {
+            if (auctions.length < 28) {
                 finished = true;
             }
 
