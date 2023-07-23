@@ -15,7 +15,7 @@ totalAuctions = totalAuctions.join("");
 
 
 let search = document.createElement("Input");
-search.placeholder = "Search for an item...";
+search.placeholder = "Search for an item... TIP: Use && to search for multiple terms";
 search.style = "font-size: .9em; padding-left: .5em; padding-bottom: .5em; padding-top: .5em; width:100%; border: none";
 
 search.onfocus = searchFocused(search);
@@ -30,11 +30,13 @@ loading.innerHTML = 'Loading...';
 
 async function handleSearchChange(e) {
     let value = e.target.value;
+    let lowerValue = value.toLowerCase();
+    let stringArr = lowerValue.split("&&");
 
     if (e.key === 'Enter' || e.keyCode === 13) {
         filterOptions.insertBefore(loading, filterOptions.children[3]);
         loading.style = 'padding-left: .5em; display: block;';
-        let auctionsArr = await getScrapAuctions(value);
+        let auctionsArr = await getScrapAuctions(stringArr);
 
         auctionList.innerHTML = '';
         auctionsArr.forEach((item) => {
@@ -78,7 +80,7 @@ async function getScrapAuctions(searchValue) {
                     let includesSearch = false;
 
                     if (regexFilter) {
-                        if (regexFilter.toLowerCase().includes(searchValue.toLowerCase())) {
+                        if (searchValue.every(s => regexFilter.toLowerCase().includes(s))) {
                             includesSearch = true;
                         }
                     }
