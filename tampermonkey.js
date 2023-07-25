@@ -13,14 +13,21 @@ const auctionList = document.querySelector('#raffles-list');
 var totalAuctions = filterOptions.children[1].children[0].innerHTML.match(/\d/g);
 totalAuctions = totalAuctions.join("");
 
-
 let search = document.createElement("Input");
-search.placeholder = "Search for an item... TIP: Use && to search for multiple terms";
+search.placeholder = "Search for an item...            TIP: Use & and || to use AND/OR";
 search.style = "font-size: .9em; padding-left: .5em; padding-bottom: .5em; padding-top: .5em; width:100%; border: none";
 
 search.onfocus = searchFocused(search);
 function searchFocused(element) {
     element.style = 'font-size: .9em; outline: none; padding-left: .5em; padding-bottom: .5em; padding-top: .5em; width:100%; border: none';
+}
+
+// Get possible value from localstorage
+const scrapQuery = localStorage.getItem("scrapQuery");
+
+// If valid localstorage query set value
+if (scrapQuery) {
+    search.value = scrapQuery;
 }
 
 filterOptions.insertBefore(search, filterOptions.children[2]);
@@ -31,16 +38,33 @@ loading.innerHTML = 'Loading...';
 async function handleSearchChange(e) {
     let value = e.target.value;
     let lowerValue = value.toLowerCase();
-    let stringArr = lowerValue.split("&&");
+    let strings = lowerValue.split("||");
 
-    stringArr.forEach((item, index) => {
-        stringArr[index] = item.trim();
+    let searchArr = [];
+
+    strings.forEach((item, index) => {
+        let arrItems = [item.trim()];
+
+        // If includes && split into strings
+        if (item.includes("&")) {
+            arrItems = [];
+            let splitItem = item.split("&");
+
+            splitItem.forEach((str, ind) => {
+                arrItems = [...arrItems, str.trim()];
+            });
+        }
+
+        searchArr = [...searchArr, arrItems];
     });
 
     if (e.key === 'Enter' || e.keyCode === 13) {
+        // Save value to localstorage
+        localStorage.setItem("scrapQuery", value);
+
         filterOptions.insertBefore(loading, filterOptions.children[3]);
         loading.style = 'padding-left: .5em; display: block;';
-        let auctionsArr = await getScrapAuctions(stringArr);
+        let auctionsArr = await getScrapAuctions(searchArr);
 
         auctionList.innerHTML = '';
         auctionsArr.forEach((item) => {
@@ -50,7 +74,7 @@ async function handleSearchChange(e) {
     }
 }
 
-async function getScrapAuctions(searchValue) {
+async function getScrapAuctions(searchArr) {
     let scrapList = [];
 
     let url = 'https://scrap.tf/auctions';
@@ -84,9 +108,13 @@ async function getScrapAuctions(searchValue) {
                     let includesSearch = false;
 
                     if (regexFilter) {
-                        if (searchValue.every(s => regexFilter.toLowerCase().includes(s))) {
-                            includesSearch = true;
-                        }
+
+                        // Loop over search terms
+                        searchArr.forEach((item) => {
+                            if (item.every(s => regexFilter.toLowerCase().includes(s))) {
+                                includesSearch = true;
+                            }
+                        });
                     }
 
                     if (includesSearch === true) {
