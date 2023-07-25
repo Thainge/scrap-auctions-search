@@ -10,8 +10,15 @@
 const filterOptions = document.querySelectorAll('.panel-info')[1];
 const auctionList = document.querySelector('#raffles-list');
 
-var totalAuctions = filterOptions.children[1].children[0].innerHTML.match(/\d/g);
+var totalTitleEl = filterOptions.children[1].children[0].childNodes[1].data;
+
+if (filterOptions.children[1].children[0].childNodes.length === 7) {
+    totalTitleEl = filterOptions.children[1].children[0].childNodes[2].data;
+}
+
+var totalAuctions = totalTitleEl.match(/\d/g);
 totalAuctions = totalAuctions.join("");
+console.log(totalAuctions);
 
 let search = document.createElement("Input");
 search.placeholder = "Search for an item...            TIP: Use & and || to use AND/OR";
