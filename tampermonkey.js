@@ -9,6 +9,8 @@
 // @updateURL   https://github.com/Thainge/scrap-auctions-search/blob/main/tampermonkey.js
 // ==/UserScript==
 
+console.log('test');
+
 const filterOptions = document.querySelectorAll('.panel-info')[1];
 const auctionList = document.querySelector('#raffles-list');
 let startedSearch = false;
