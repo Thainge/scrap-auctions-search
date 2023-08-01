@@ -5,6 +5,8 @@
 // @description    Added search functionallity to auctions
 // @match          *://*.scrap.tf/*
 // @grant          GM_addStyle
+// @downloadURL https://github.com/Thainge/scrap-auctions-search/blob/main/tampermonkey.js
+// @updateURL   https://github.com/Thainge/scrap-auctions-search/blob/main/tampermonkey.js
 // ==/UserScript==
 
 const filterOptions = document.querySelectorAll('.panel-info')[1];
