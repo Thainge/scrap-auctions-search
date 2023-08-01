@@ -9,7 +9,7 @@
 
 const filterOptions = document.querySelectorAll('.panel-info')[1];
 const auctionList = document.querySelector('#raffles-list');
-const startedSearch = false;
+let startedSearch = false;
 
 var totalTitleEl = filterOptions.children[1].children[0].childNodes[1].data;
 
@@ -66,7 +66,9 @@ async function handleSearchChange(e) {
         searchArr = [...searchArr, arrItems];
     });
 
+    console.log('click');
     if ((e.key === 'Enter' || e.keyCode === 13) && startedSearch === false) {
+        console.log('started');
         startedSearch = true;
         // Save value to localstorage
         localStorage.setItem("scrapQuery", value);
