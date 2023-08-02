@@ -26,7 +26,6 @@ if (filterOptions.children[1].children[0].childNodes.length === 7) {
 
 var totalAuctions = totalTitleEl.match(/\d/g);
 totalAuctions = totalAuctions.join("");
-console.log(totalAuctions);
 
 let search = document.createElement("Input");
 search.placeholder = "Search for an item...            TIP: Use & and || to use AND/OR";
@@ -73,9 +72,7 @@ async function handleSearchChange(e) {
         searchArr = [...searchArr, arrItems];
     });
 
-    console.log('click');
     if ((e.key === 'Enter' || e.keyCode === 13) && startedSearch === false) {
-        console.log('started');
         startedSearch = true;
         // Save value to localstorage
         localStorage.setItem("scrapQuery", value);
