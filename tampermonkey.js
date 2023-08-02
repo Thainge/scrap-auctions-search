@@ -1,17 +1,18 @@
 // ==UserScript==
-// @name        Search auctions
+// @name        Scrap.tf Search Auctions
 // @author      Llorence
 // @version     1.9
+// @icon        https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftradeplz.com%2Fwp-content%2Fuploads%2F2016%2F06%2Fscrap.png&f=1&nofb=1&ipt=5be9ef454325598db54382c87b4199089f4c97342714f91047abb1acc6ad1a36&ipo=images
 // @namespace   https://github.com/Thainge
 // @author      Thainge
 // @license     MIT
-// @description Added search functionallity to auctions
+// @description Adds search functionallity to auctions
 // @match       *://*.scrap.tf/*
 // @grant       GM_addStyle
 // @supportURL  https://github.com/Thainge/scrap-auctions-search/issues
 // @homepageURL https://github.com/Thainge/scrap-auctions-search
-// @downloadURL https://raw.githubusercontent.com/Thainge/scrap-auctions-search/main/tampermonkey.js
-// @updateURL   https://raw.githubusercontent.com/Thainge/scrap-auctions-search/main/tampermonkey.js
+// @downloadURL https://github.com/Thainge/scrap-auctions-search/blob/main/tampermonkey.js
+// @updateURL   https://github.com/Thainge/scrap-auctions-search/blob/main/tampermonkey.js
 // ==/UserScript==
 
 const filterOptions = document.querySelectorAll('.panel-info')[1];
