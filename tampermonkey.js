@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Scrap.tf Search Auctions
 // @author      Llorence
-// @version     1.9
+// @version     2.0
 // @icon        https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftradeplz.com%2Fwp-content%2Fuploads%2F2016%2F06%2Fscrap.png&f=1&nofb=1&ipt=5be9ef454325598db54382c87b4199089f4c97342714f91047abb1acc6ad1a36&ipo=images
 // @namespace   https://github.com/Thainge
 // @author      Thainge
