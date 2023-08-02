@@ -11,8 +11,8 @@
 // @grant       GM_addStyle
 // @supportURL  https://github.com/Thainge/scrap-auctions-search/issues
 // @homepageURL https://github.com/Thainge/scrap-auctions-search
-// @downloadURL https://github.com/Thainge/scrap-auctions-search/blob/main/tampermonkey.js
-// @updateURL   https://github.com/Thainge/scrap-auctions-search/blob/main/tampermonkey.js
+// @downloadURL https://raw.githubusercontent.com/Thainge/scrap-auctions-search/main/tampermonkey.js
+// @updateURL   https://raw.githubusercontent.com/Thainge/scrap-auctions-search/main/tampermonkey.js
 // ==/UserScript==
 
 const filterOptions = document.querySelectorAll('.panel-info')[1];
