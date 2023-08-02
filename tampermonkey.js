@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           Search auctions
 // @author         Llorence
-// @version        1.0
+// @version        1.5
 // @namespace   https://github.com/Thainge
 // @description    Added search functionallity to auctions
 // @match          *://*.scrap.tf/*
