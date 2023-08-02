@@ -2,6 +2,7 @@
 // @name           Search auctions
 // @author         Llorence
 // @version        1.0
+// @namespace   https://github.com/Thainge
 // @description    Added search functionallity to auctions
 // @match          *://*.scrap.tf/*
 // @grant          GM_addStyle
