@@ -142,6 +142,7 @@ async function getScrapAuctions(searchArr) {
         }
     }
 
+    startedSearch = false;
     // Then return the scrapList array
     return scrapList;
 }
