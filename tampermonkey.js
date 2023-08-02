@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Search auctions
 // @author      Llorence
-// @version     1.8
+// @version     1.9
 // @namespace   https://github.com/Thainge
 // @author      Thainge
 // @license     MIT
