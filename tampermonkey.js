@@ -1,11 +1,14 @@
 // ==UserScript==
-// @name           Search auctions
-// @author         Llorence
-// @version        1.5
+// @name        Search auctions
+// @author      Llorence
+// @version     1.5
 // @namespace   https://github.com/Thainge
-// @description    Added search functionallity to auctions
-// @match          *://*.scrap.tf/*
-// @grant          GM_addStyle
+// @author      Thainge
+// @license     MIT
+// @description Added search functionallity to auctions
+// @match       *://*.scrap.tf/*
+// @grant       GM_addStyle
+// @supportURL  https://github.com/Thainge/scrap-auctions-search/issues
 // @homepageURL https://github.com/Thainge/scrap-auctions-search
 // @downloadURL https://github.com/Thainge/scrap-auctions-search/blob/main/tampermonkey.js
 // @updateURL   https://github.com/Thainge/scrap-auctions-search/blob/main/tampermonkey.js
@@ -85,7 +88,7 @@ async function handleSearchChange(e) {
 
         auctionList.innerHTML = '';
         auctionsArr.forEach((item) => {
-           auctionList.appendChild(item);
+            auctionList.appendChild(item);
         });
         loading.style = 'display: none;';
     }
@@ -150,7 +153,7 @@ async function getScrapAuctions(searchArr) {
 }
 
 document.querySelectorAll('.panel-info')[1].addEventListener(
-  'keyup',
-  handleSearchChange,
-  false
+    'keyup',
+    handleSearchChange,
+    false
 );
